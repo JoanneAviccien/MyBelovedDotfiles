@@ -1,0 +1,93 @@
+#
+# Misc Panel
+#
+DestroyModuleConfig MiscPanel:*
+Style MiscPanel NoHandles
+*MiscPanel: Columns 30
+*MiscPanel: Rows 1
+*MiscPanel: Colorset 2
+*MiscPanel: Frame 0
+*MiscPanel: Font "xft:terminus:pixelsize=17"
+*MiscPanel: (13x1,Swallow "xclock" `Exec xclock -bg '#f9faf4' -fg '#3d85c6' -digital -face 'terminus:size=9' -strftime '%a, %d %b %Y %H:%M'`,\
+	Action (Mouse 1) "Exec exec gsimplecal")
+*MiscPanel: (2x1, Title "|")
+*MiscPanel: (10x1, Swallow(UseOld) "stalonetray" "Exec stalonetray -bg '#f9faf4'")
+*MiscPanel: (2x1, Title "|")
+# nf-mdi-volume_high
+#*MiscPanel: (2x1, Title " ", Font "xft:FiraCode Nerd Font Regular:pixelsize=17",\
+  Action (Mouse 1) "Menu VolumeMenu")
+# nf-mdi-wifi
+#*MiscPanel: (3x1, Title "󰤨 ", Font "xft:FiraCode Nerd Font:pixelsize=17",\
+  Action (Mouse 1) "Exec exec urxvt -e nmtui")
+# nf-mdi-brightness_7
+#*MiscPanel: (3x1, Title "󰃝   ", Font "xft:FiraCode Nerd Font:pixelsize=17",\
+  Action (Mouse 1) "Menu Brightness" Color "#8dbed9")
+
+AddToMenu PowerMenu
+# TODO: make this actually work
++ "Governor"       Nop
++ "X Performance"  Nop
+# disable compositor, change governor to favor battery life
++ "  Battery Life" Nop
+
+AddToMenu Brightness
++ "Brightness +" Exec exec brightnessctl set +10
++ "Brightness -" Exec exec brightnessctl set 10-
+
+AddToMenu VolumeMenu
++ "Audio Mixer..." Exec exec urxvt -e pulsemixer
+# i think these are broken, as they adjust the volume of the currently playing source
++ "Mute"           Exec exec pulsemixer --toggle-mute
++ "Volume Up"      Exec exec pulsemixer --change-volume +5
++ "Volume Down"    Exec exec pulsemixer --change-volume -5
+
+DestroyFunc CreateWifiMenu
+AddToFunc CreateWifiMenu
++ I DestroyMenu recreate WifiMenu
++ I PipeRead 'wifi-menu'
+
+AddToMenu WifiMenu
++ DynamicPopupAction Function CreateWifiMenu
++ DynamicPopdownAction DestroyMenu recreate WifiMenu
+
+#
+# Notif panel
+#
+DestroyModuleConfig NotifPanel:*
+Style NotifPanel NoHandles
+*NotifPanel: Columns 30
+*NotifPanel: Rows 1
+*NotifPanel: Colorset 2
+*NotifPanel: Frame 0
+*NotifPanel: Font "xft:FiraCode Nerd Font Reguler:pixelsize=17"
+*NotifPanel: (3x1, Title (Left) " 󰋑 ")
+
+
+# 
+# Workspace Panel
+#
+DestroyModuleConfig WorkspacePanel:*
+Style WorkspacePanel NoHandles
+*WorkspacePanel: Columns 4
+*WorkspacePanel: Rows 1
+*WorkspacePanel: Font "xft:terminus:pixelsize=17"
+*WorkspacePanel: (1x1, Id desk0, Title "1", Action (Mouse 1) GotoDesk 0 0, \
+              ActiveColorset 1, Colorset 1, Frame 0)
+*WorkspacePanel: (1x1, Id desk1, Title "2", Action (Mouse 1) GotoDesk 0 1, \
+              ActiveColorset 1, Colorset 0, Frame 0)
+*WorkspacePanel: (1x1, Id desk2, Title "3", Action (Mouse 1) GotoDesk 0 2, \
+              ActiveColorset 1, Colorset 0, Frame 0)
+*WorkspacePanel: (1x1, Id desk3, Title "4", Action (Mouse 1) GotoDesk 0 3, \
+              ActiveColorset 1, Colorset 0, Frame 0)
+
+DestroyFunc ChangeDesk
+AddToFunc   ChangeDesk
++ I SendToModule FvwmButtons ChangeButton desk0 Colorset 0
++ I SendToModule FvwmButtons ChangeButton desk1 Colorset 0
++ I SendToModule FvwmButtons ChangeButton desk2 Colorset 0
++ I SendToModule FvwmButtons ChangeButton desk3 Colorset 0
++ I SendToModule FvwmButtons ChangeButton desk$0 Colorset 1
+
+DestroyModuleConfig EventNewDesk:*
+*EventNewDesk: PassID
+*EventNewDesk: new_desk ChangeDesk

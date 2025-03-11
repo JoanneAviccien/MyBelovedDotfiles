@@ -1,0 +1,82 @@
+
+###############################################################################
+#                                                                             #
+# Init & Restart Functions                                                    #
+#                                                                             #
+###############################################################################
+
+DestroyFunc StartFunction
+AddToFunc StartFunction
++ I Exec exec xrdb ~/.Xresources
++ I Exec exec feh --bg-scale /home/herrscherin/.fvwm/wall.jpg
++ I Exec exec picom
++ I Exec exec cbatticon
+# kill the montior since we are restarting the command server
++ I Exec exec pkill fvwm-monitor
++ I Module FvwmCommandS
++ I Read binds
++ I Read menus
++ I Read style quiet
++ I Read panel
++ I Module FvwmEvent EventNewDesk
++ I Module FvwmButtons -g 120x30+5-5 WorkspacePanel
++ I Module FvwmButtons -g 340x30+135-5 MiscPanel
++ I Module FvwmButtons -g 400x30+485-5 NotifPanel
+# + I Exec exec fvwm-root /home/herrscherin/.fvwm/.background-image.png
++ I Exec exec /home/herrscherin/.fvwm/bin/fvwm-monitor
+
+DestroyFunc InitFunction
+AddToFunc InitFunction
++ I Nop
+
+DestroyFunc RestartFunction
+AddToFunc RestartFunction
++ I Nop
+
+DestroyFunc SessionInitFunction
+AddToFunc SessionInitFunction
++ I Nop
+
+DestroyFunc SessionRestartFunction
+AddToFunc SessionRestartFunction
++ I Nop
+
+###############################################################################
+#                                                                             #
+# Custom Functions                                                            #
+#                                                                             #
+###############################################################################
+
+DestroyFunc Move-or-Raise
+AddToFunc Move-or-Raise
++ I Raise
++ M Move
+
+DestroyFunc Move-or-Iconify
+AddToFunc Move-or-Iconify
++ I Raise
++ M Move
++ D Iconify
+
+DestroyFunc Resize-or-Raise
+AddToFunc Resize-or-Raise
++ I Raise
++ M Resize
+
+###############################################################################
+#                                                                             #
+# Global Behavior Commands                                                    #
+#                                                                             #
+###############################################################################
+
+DeskTopSize 1x6
+# disable edge scrolling
+EdgeThickness 0
+
+Emulate Mwm
+Style * ClickToFocus
+Style * FPLenient
+Style * TileCascadePlacement
+Style * !UsePPosition
+
+

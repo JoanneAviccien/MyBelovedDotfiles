@@ -1,0 +1,56 @@
+# colors
+# DFDDD7 - light bg
+# C6DA83 - highlight bg
+# 252724 - dark bg
+
+
+CleanupColorsets
+DefaultColorset 0
+Style * ColorSet 1
+Style * HilightColorset 1
+MenuStyle * MenuColorset 2
+
+# colorsets
+# 0 - window decor title
+# 1 - active workspace
+# 2 - light panel + menus
+# 3 - focused window decor
+ColorSet 0 fg #eeeeee, bg #252724
+ColorSet 1 fg #252724, bg #8dbed9
+ColorSet 2 fg #222222, bg #F9FAF4
+ColorSet 3 fg #eeeeee, bg #473131
+
+# window decor!
+Style * TitleAtLeft
+Style * !Handles
+Style * RoundedCorners
+
+# titlebar
+DestroyDecor FvwmDecor
+AddToDecor FvwmDecor
++ TitleStyle RightJustified Height 32 -- Flat
+
++ BorderStyle -- Flat
+
++ ButtonStyle Reset
++ ButtonStyle All -- Flat
++ AddButtonStyle All (Pixmap icons/windowbutton.png -- Flat)
+
++ BorderStyle Flat
+
+Style * UseDecor FvwmDecor,\
+        Colorset 0, HilightColorset 0\
+        RightTitleRotatedCW\
+        !Handles, NoInset, BorderWidth 2
+
+DefaultFont "xft:terminus:pixelsize=17"
+DestroyModuleConfig FvwmScript:*
+*FvwmScript: DefaultFont "xft:terminus:pixelsize=17"
+*FvwmScript: DefaultColorset 1
+
+Style Fvwm* BorderWidth 2
+Style Fvwm* CirculateSkip
+Style Fvwm* CirculateSkipIcon
+Style Fvwm* Sticky
+Style Fvwm* !Title
+Style Fvwm* WindowListSkip

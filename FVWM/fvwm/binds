@@ -1,0 +1,75 @@
+# Ignore the "Numlock" key so it does not interfere with keyboard shortcuts
+#
+IgnoreModifiers L2
+
+# Ctrl+Alt virtual desktop navigation
+#
+Key Up A CM           Scroll -100000 0
+Key Down A CM         Scroll  100000 0
+Key Page_Up A CM      Scroll -100000 0
+Key Page_Down A CM    Scroll  100000 0
+
+# Volume keys
+Key XF86AudioRaiseVolume A A Exec amixer -q set Master 5%+ 
+Key XF86AudioLowerVolume A A Exec amixer -q set Master 5%- 
+Key XF86AudioMute A A Exec amixer set Master toggle
+
+# Media Keys
+Key XF86AudioNext A A Exec mocp -f
+Key XF86AudioPrev A A Exec mocp -r
+Key XF86AudioPlay A A Exec mocp -G
+
+# FastFetch
+Key XF86Q Exec urxvt -e fastfetch
+
+# Brightness
+Key XF86MonBrightnessUp A A Exec brightnessctl set +5
+Key XF86MonBrightnessDown A A Exec brightnessctl set 5-
+
+# Ctrl+Alt program shortcuts
+#
+Key C A CM            Exec exec xclock
+Key K A CM            Close
+Key space A 4        Menu RootMenu Nop
+Key R A CM            Restart
+Key Return A 4         Exec exec urxvt
+
+Key L A 4 Exec i3lock -i ~/.fvwm/lock.png
+Key S A 4 Exec gscreenshot
+Key R A 4S Restart
+Key D A 4 Menu Window-Ops Interior 0 0 Nop
+
+# Simple default mouse bindings for the root window:
+#
+Mouse 1 R A           Menu RootMenu Nop
+Mouse 2	R A           Menu Window-Ops Interior 0 0 Nop
+Mouse 3	R A           WindowList
+
+# ... and for the title bar buttons:
+#
+Mouse 0	2 A           Menu Window-Ops Nop
+#Mouse 0	2 A           Maximize
+#Mouse 0	4 A           Iconify
+
+# ... and other parts of the windows / borders / icons:
+#
+
+Mouse 1 A 4 Resize
+
+Mouse 1	FS A          Resize-or-Raise
+Mouse 1	T A           Move-or-Raise
+Mouse 1	I A           Move-or-Iconify
+Mouse 2	I A           Iconify
+Mouse 2	FST A         Menu Window-Ops Nop
+Mouse 3	TSIF A        RaiseLower
+
+# Workspace
+Key 1 A 4 Gotodesk 0 0
+Key 2 A 4 Gotodesk 0 1
+Key 3 A 4 Gotodesk 0 2
+Key 4 A 4 Gotodesk 0 3
+
+Key 1 A 4S MovetoDesk 0 0
+Key 2 A 4S MovetoDesk 0 1
+Key 3 A 4S MovetoDesk 0 2
+Key 4 A 4S MovetoDesk 0 3

@@ -1,0 +1,1 @@
+echo "SendToModule FvwmButtons ChangeButton $@" | python /home/herrscherin/.nix-profile/bin/FvwmCommand -c

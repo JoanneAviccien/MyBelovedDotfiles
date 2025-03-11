@@ -1,0 +1,8 @@
+[1740348550.750063] FScreenInit: Using RandR 1.6
+[1740348550.752451] scan_screens: Case 1: Add new monitors
+[1740348550.752505] monitor_mark_new: Added new monitor: eDP-1 (0x38ce83b0)
+[1740348550.844533] SetupICCCM2: another ICCCM 2.0 compliant WM is running, try -replace
+[1740423018.730263] FScreenInit: Using RandR 1.6
+[1740423018.732693] scan_screens: Case 1: Add new monitors
+[1740423018.732791] monitor_mark_new: Added new monitor: eDP-1 (0x30d687f0)
+[1740423018.818818] SetupICCCM2: another ICCCM 2.0 compliant WM is running, try -replace
